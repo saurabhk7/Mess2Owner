@@ -10,14 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.saurabh.mess2owner.MainActivity">
 
-    <Button
-        android:id="@+id/scanbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SCAN"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:id="@+id/result"
         android:layout_width="match_parent"
@@ -27,15 +19,17 @@
         android:padding="5dp"
         android:gravity="center_horizontal"
         android:layout_above="@+id/scanbtn"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:visibility="gone" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
-        android:layout_above="@+id/result"
-        android:id="@+id/ScanlistView" />
+        android:id="@+id/ScanlistView"
+        android:layout_above="@+id/scanbtn"
+        android:visibility="visible" />
 
     <TextView
         android:text="Latest Scans:"
@@ -45,5 +39,22 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/textView"
         android:textSize="25sp" />
+
+    <Button
+        android:text="MONTH DETAILS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NextBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/scanbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SCAN"
+        android:layout_above="@+id/NextBtn"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

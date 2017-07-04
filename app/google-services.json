@@ -1,0 +1,138 @@
+{
+  "project_info": {
+    "project_number": "648682298798",
+    "firebase_url": "https://messed-up.firebaseio.com",
+    "project_id": "messed-up",
+    "storage_bucket": "messed-up.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648682298798:android:0c09b063b56d7c81",
+        "android_client_info": {
+          "package_name": "com.example.saurabh.mess2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648682298798-iikk6scf19cbe6mqhcn1t8v844jbm68t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.saurabh.mess2",
+            "certificate_hash": "8e032c67a2b920ffd402aa192d076d30d7221fa3"
+          }
+        },
+        {
+          "client_id": "648682298798-fl7rcvckf97obtht0tj77bh5dcq231o5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf9Icb0Q_kPF6KY9dESdXQTwkP70KPa8Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648682298798-fl7rcvckf97obtht0tj77bh5dcq231o5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648682298798:android:1ff171a4e9fad67f",
+        "android_client_info": {
+          "package_name": "com.messedup.saurabh.mess2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648682298798-0ng69vqlq7b33e3sl42i3cp8cpsigtsd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.messedup.saurabh.mess2",
+            "certificate_hash": "591062ae5b1ef363f2797cbe448221a4ce547d59"
+          }
+        },
+        {
+          "client_id": "648682298798-63h49loispksdkocrdq64ccm0ag16si3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.messedup.saurabh.mess2",
+            "certificate_hash": "8e032c67a2b920ffd402aa192d076d30d7221fa3"
+          }
+        },
+        {
+          "client_id": "648682298798-fl7rcvckf97obtht0tj77bh5dcq231o5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf9Icb0Q_kPF6KY9dESdXQTwkP70KPa8Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648682298798-fl7rcvckf97obtht0tj77bh5dcq231o5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648682298798:android:0123172380e96728",
+        "android_client_info": {
+          "package_name": "com.example.saurabh.mess2owner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648682298798-fl7rcvckf97obtht0tj77bh5dcq231o5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf9Icb0Q_kPF6KY9dESdXQTwkP70KPa8Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

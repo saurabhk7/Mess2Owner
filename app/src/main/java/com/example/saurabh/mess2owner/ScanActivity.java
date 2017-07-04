@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Camera;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -59,10 +61,17 @@ public class ScanActivity extends AppCompatActivity {
             public void surfaceCreated(SurfaceHolder holder) {
                 try{
                     if(ContextCompat.checkSelfPermission(ScanActivity.this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+
                         cameraSource.start(cameraView.getHolder());
+                    }
+                    else if (ContextCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {//ask for authorisation
+                        ActivityCompat.requestPermissions(ScanActivity.this, new String[]{android.Manifest.permission.CAMERA}, 50);
                     }
                 }
                 catch (IOException e){
+                    if (ContextCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) { //ask for authorisation
+                        ActivityCompat.requestPermissions(ScanActivity.this, new String[]{android.Manifest.permission.CAMERA}, 50);
+                    }
                     e.printStackTrace();
                 }
             }
@@ -117,4 +126,13 @@ public class ScanActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onDestroy() {
+        if (cameraSource != null) {
+            cameraSource.release();
+        }
+        super.onDestroy();
+    }
+
 }
