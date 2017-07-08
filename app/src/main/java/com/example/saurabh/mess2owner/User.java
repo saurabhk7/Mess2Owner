@@ -10,7 +10,7 @@ public class User {
     private String batch;
     private String groupid;
     private String name;
-    private String paidtime;
+   // private String paidtime;
     private String scanneddinner;
     private String scannedlunch;
     private String uid;
@@ -27,11 +27,11 @@ public class User {
     public User() {
     }
 
-    public User(String batch, String groupid, String name, String paidtime, String scanneddinner, String scannedLunch,String endsub) {
+    public User(String batch, String groupid, String name/*, String paidtime*/, String scanneddinner, String scannedLunch,String endsub) {
         this.batch = batch;
         this.groupid = groupid;
         this.name = name;
-        this.paidtime = paidtime;
+       // this.paidtime = paidtime;
         this.scanneddinner = scanneddinner;
         this.scannedlunch = scannedLunch;
         this.endsub=endsub;
@@ -69,13 +69,15 @@ public class User {
         this.name = name;
     }
 
-    public String getPaidtime() {
+   /* public String getPaidtime() {
         return paidtime;
-    }
+    }*/
 
+/*
     public void setPaidtime(String paidtime) {
         this.paidtime = paidtime;
     }
+*/
 
     public String getScanneddinner() {
         return scanneddinner;
@@ -99,7 +101,7 @@ public class User {
                 "batch='" + batch + '\'' +
                 ", groupid='" + groupid + '\'' +
                 ", name='" + name + '\'' +
-                ", paidtime='" + paidtime + '\'' +
+              //  ", paidtime='" + paidtime + '\'' +
                 ", scanneddinner='" + scanneddinner + '\'' +
                 ", scannedlunch='" + scannedlunch + '\'' +
                 ", uid='" + uid + '\'' +

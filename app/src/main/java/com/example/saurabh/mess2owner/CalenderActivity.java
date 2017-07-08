@@ -56,31 +56,38 @@ public class CalenderActivity extends AppCompatActivity {
 
 
         spinYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 final String dateSelected=spinYear.getItemAtPosition(i).toString();
+                adapter2.clear();
+                adapter2.notifyDataSetChanged();
 
 
-
+                final int[] count1 = {0};
 
                 FirebaseDatabase.getInstance().getReference().child("MessBuffer").child(MESS_ID)
                         .child("scanneddinner").child(dateSelected).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        adapter2.clear();
+                      /*  adapter2.clear();
                         adapter2.notifyDataSetChanged();
+*/
 
                         ArrayList<String> scannedArrayList = new ArrayList<>();
                         for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                            scannedArrayList.add(dsp.getValue(String.class));
+                            scannedArrayList.add("Dinner: "+dsp.getValue(String.class));
+                            count1[0]++;
                         }
 
 
                         Log.v("E_VALUE",scannedArrayList+"");
                         Log.v("E_VALUE",dateSelected);
 
-
+                        TextView textView2tp=(TextView)findViewById(R.id.textView2);
+                      //  textView2tp.setText("Select Date | Total Students on "+dateSelected+" : "+ count1[0]);
 
                         for(String s : scannedArrayList)
                         {
@@ -96,6 +103,47 @@ public class CalenderActivity extends AppCompatActivity {
 
                     }
                 });
+                FirebaseDatabase.getInstance().getReference().child("MessBuffer").child(MESS_ID)
+                        .child("scannedlunch").child(dateSelected).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                       /* adapter2.clear();
+                        adapter2.notifyDataSetChanged();*/
+
+                        int count2=0;
+
+                        ArrayList<String> scannedArrayList2 = new ArrayList<>();
+                        for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                            scannedArrayList2.add("Lunch: "+dsp.getValue(String.class));
+                            count1[0]++;
+                        }
+
+                        TextView textView2tp=(TextView)findViewById(R.id.textView2);
+                        textView2tp.setText("Select Date | Total Students on "+dateSelected+" : "+count1[0]);
+
+
+                        Log.v("E_VALUE",scannedArrayList2+"");
+                        Log.v("E_VALUE",dateSelected);
+
+
+
+                        for(String s : scannedArrayList2)
+                        {
+                            adapter2.add(s);
+                        }
+
+                        adapter2.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
 
 
             }

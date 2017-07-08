@@ -31,6 +31,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int PERMISSION_REQUEST = 200;
     public static User UserDataObj;
     public static Map<String,String> timeMap;
-    public static String MESS_ID="Mess1";
+    public static String MESS_ID="Mess2";
     HashMap<String,String> map2=new HashMap<>();
     private DatabaseReference mDatabaseUser= FirebaseDatabase.getInstance().getReference().child("users");
     private boolean connected;
@@ -77,66 +78,68 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // FirebaseApp.initializeApp(this);
+        // FirebaseApp.initializeApp(this);
         scanbtn = (Button) findViewById(R.id.scanbtn);
         nextbtn = (Button) findViewById(R.id.NextBtn);
 
 
         result = (TextView) findViewById(R.id.result);
-        listView=(ListView)findViewById(R.id.ScanlistView);
+        listView = (ListView) findViewById(R.id.ScanlistView);
 
 
 
+            FirebaseAuth.getInstance().signInWithEmailAndPassword("anandmess@messedup.com", "anandfoodxprs")
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
 
+                            adapter = new ArrayAdapter<HashMap<String, String>>(getApplicationContext(), R.layout.costum_listview);
+                            listView.setAdapter(adapter);
 
-        adapter = new ArrayAdapter<HashMap<String,String>>(getApplicationContext(), R.layout.costum_listview);
-        listView.setAdapter(adapter);
-
-        populateListView();
-
+                            populateListView();
 
 
-        getCurrentDate();
+                            getCurrentDate();
 
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST);
-        }
+                            if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST);
+                            }
 
-        scanbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                            scanbtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
-                if(isConnected()) {
+                                    if (isConnected()) {
 
-                    Vibrator vib = (Vibrator) getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
-                    vib.vibrate(20);
-                    Intent intent = new Intent(MainActivity.this, ScanActivity.class);
-                    startActivityForResult(intent, REQUEST_CODE);
-                }
-                else
-                {
-                    Vibrator vib = (Vibrator) getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
-                    long[] pattern = {0, 75,100,75};
+                                        Vibrator vib = (Vibrator) getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
+                                        vib.vibrate(20);
+                                        Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+                                        startActivityForResult(intent, REQUEST_CODE);
+                                    } else {
+                                        Vibrator vib = (Vibrator) getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
+                                        long[] pattern = {0, 75, 100, 75};
 
-                    // The '-1' here means to vibrate once, as '-1' is out of bounds in the pattern array
-                    vib.vibrate(pattern, -1);
-                    Toast.makeText(getBaseContext(),"No Internet! Please Check your Connection",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+                                        // The '-1' here means to vibrate once, as '-1' is out of bounds in the pattern array
+                                        vib.vibrate(pattern, -1);
+                                        Toast.makeText(getBaseContext(), "No Internet! Please Check your Connection", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
 
 
+                            nextbtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent MonthDetails = new Intent(MainActivity.this, CalenderActivity.class);
+                                    startActivity(MonthDetails);
+                                }
+                            });
+                        }
+    });
 
-        nextbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent MonthDetails=new Intent(MainActivity.this,CalenderActivity.class);
-                startActivity(MonthDetails);
-            }
-        });
-    }
 
+}
 
 
 
@@ -169,7 +172,7 @@ try {
 }
 catch (Exception e)
 {
-    Toast.makeText(MainActivity.this,"ALA RE ALA 2",Toast.LENGTH_LONG).show();
+   // Toast.makeText(MainActivity.this,"ALA RE ALA 2",Toast.LENGTH_LONG).show();
 
 }
     }
@@ -206,7 +209,7 @@ catch (Exception e)
         {
             Log.v("E_VALUE","EXCEPTION--- ");
 
-            Toast.makeText(MainActivity.this,"ALA RE ALA",Toast.LENGTH_LONG).show();
+         //   Toast.makeText(MainActivity.this,"ALA RE ALA",Toast.LENGTH_LONG).show();
         }
 
 
@@ -364,7 +367,7 @@ catch (Exception e)
     private boolean UserValidation(final String text2) {
 
         mDatabaseUser.child(text2)
-                .addValueEventListener(new ValueEventListener() {
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         try {
@@ -456,7 +459,7 @@ catch (Exception e)
                                                 }
 
                                             }
-                                            else if(scanHour>10&&scanHour<17)
+                                            else if(scanHour>9&&scanHour<17)
                                             {
                                                 if(checkforLunch(scanDate,scanMonth))
                                                 {
@@ -540,6 +543,11 @@ catch (Exception e)
                                 //setValues(scanned,scanDate,scanMonth,scanYear);
                                 break;
                             }
+                        }
+
+                        if(!GROUP_FOUND[0])
+                        {
+                            showNegativeDialog();
                         }
 
 

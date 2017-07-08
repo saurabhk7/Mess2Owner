@@ -26,6 +26,16 @@
         android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:id="@+id/PreviousMonthLV" />
+        android:id="@+id/PreviousMonthLV"
+        android:textAlignment="textStart" />
+
+    <TextView
+        android:text="Select Date below to get History of scanned students in the current month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView2"
+        android:textAlignment="center" />
 
 </RelativeLayout>
